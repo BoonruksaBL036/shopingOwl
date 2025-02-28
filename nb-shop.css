@@ -1,0 +1,117 @@
+img{
+    border-radius: 15px;
+}
+
+
+.product {
+    background-color: #ffffff;
+    border: 1px solid #dddddd;
+    padding: 15px; 
+    margin: 10px;
+    margin-bottom: 20px; 
+    border-radius: 15px;
+   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+
+}
+
+.product img,
+.product h5,
+.product button {
+    display: block;
+    margin: 0 auto;
+}
+
+.product {
+    cursor: pointer;
+    background-color: #F3F8FF; /* White background */
+    border: 1px solid #f5ecec; /* Light gray border */
+    padding: 15px; /* Add some padding for spacing */
+    margin: 10px;
+    margin-bottom: 20px; /* Add margin to separate products */
+    border-radius: 15px;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease; /* Add transition for smooth effect */
+}
+
+/* Add border-radius and transition to product image */
+.product img {
+    border: 3px solid #d8d6d6;
+    border-radius: 15px;
+    transition: transform 0.3s ease; /* Add transition for smooth effect */
+}
+
+/* Change box-shadow and image transform on hover */
+.product:hover {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 16px 0 rgba(0, 0, 0, 0.2); /* Slightly stronger box-shadow on hover */
+}
+
+.product:hover img {
+    transform: scale(1.1); /* Scale up the image on hover */
+}
+
+.product h5{
+    margin-top: 5px;
+}
+
+header nav{
+    height: 15vh;
+    width: 80%;
+    margin: 0 auto;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1{
+    font-size: 45px;
+    color: #561C24;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+}
+
+header ul{
+    display: flex;
+    gap: 5rem;
+    list-style: none;
+}
+
+header a{
+    display: block;
+    color: #561C24;
+    text-decoration: none;
+    
+    border-radius: .2rem;
+    padding: .5rem 1rem;
+
+    transition: .2s ease-in;
+    border-bottom: 2px solid var(--blue);
+
+    overflow: hidden;
+    position: relative;
+}
+
+header a::before{
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+
+    width: 100%;
+    height: 100%;
+    border-radius: .1rem;
+    z-index: -1;
+
+    transition: .2s ease-in;
+    transform: translateX(-101%);
+    background: var(--blue);
+}
+
+header a:hover::before{
+    transform: translateX(0);
+}
+
+header a:hover{
+    color: rgb(255, 255, 255);
+}

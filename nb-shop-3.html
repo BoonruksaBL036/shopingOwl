@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SANGKONG Shop</title>
+    <link rel="stylesheet" href="nb-shop.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <header>
+        <nav>
+            <h1>
+                Owl Cha สาขาราชภัฎนครปฐม
+            </h1>
+            <ul>
+                <li><a href="main_index.html">Black</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="logo d-flex justify-content-center" style="margin-bottom: 30px">
+                    <h1>Favourite</h1><br /><br />
+                </div>
+
+                <div id="products" class="row">
+                    <!-- Product 1 -->
+                    <div class="col-md-3 product">
+                        <img src="/product_img/image-2.1.jpg" alt="Product 1 Image" width="150px" height="150px" />
+                        <h5>Gentle Heart<br>$10</h5>
+                        <button class="btn btn-primary add-to-cart" data-product-id="Gentle Heart" data-price="10">
+                            Add to Cart
+                        </button>
+                    </div>
+
+                    <!-- Product 2 -->
+                    <div class="col-md-3 product">
+                        <img src="/product_img/image-2.2.jpg" alt="Product 2 Image" width="150px" height="150px" />
+                        <h5>Cozy Heart<br>$20</h5>
+                        <button class="btn btn-primary add-to-cart" data-product-id="Cozy Heart" data-price="20">
+                            Add to Cart
+                        </button>
+                    </div>
+
+                    <!-- Product 3 -->
+                    <div class="col-md-3 product">
+                        <img src="/product_img/image-2.3.jpg" alt="Product 3 Image" width="150px" height="150px" />
+                        <h5>Proud Heart<br>$30</h5>
+                        <button class="btn btn-primary add-to-cart" data-product-id="Proud Heart" data-price="30">
+                            Add to Cart
+                        </button>
+                    </div>
+
+                    <!-- Product 4 -->
+                    <div class="col-md-3 product">
+                        <img src="/product_img/image-2.4.jpg" alt="Product 4 Image" width="150px" height="150px" />
+                        <h5>Bright Heart<br>$40</h5>
+                        <button class="btn btn-primary add-to-cart" data-product-id="Bright Heart" data-price="40">
+                            Add to Cart
+                        </button>
+                    </div>
+
+                    <!-- Product 5 -->
+                    <div class="col-md-3 product">
+                        <img src="/product_img/image-2.5.jpg" alt="Product 5 Image" width="150px" height="150px" />
+                        <h5>Lotsa Heart<br>$50</h5>
+                        <button class="btn btn-primary add-to-cart" data-product-id="Lotsa Heart" data-price="10">
+                            Add to Cart
+                        </button>
+                    </div>
+
+                    <!-- Product 6 -->
+                    <div class="col-md-3 product">
+                        <img src="/product_img/image-2.6.jpg" alt="Product 6 Image" width="150px" height="150px" />
+                        <h5>Brave Heart<br>$60</h5>
+                        <button class="btn btn-primary add-to-cart" data-product-id="Brave Heart" data-price="10">
+                            Add to Cart
+                        </button>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <h2 style="margin-top: 30px">
+                    Cart
+                    <img src="/product_img/Cartpng.png" alt="Cartpng" width="34px" height="34px"
+                        style="margin-top: -11px" />
+                </h2>
+
+                <div id="cart" class="mt-3">
+                    <p>No items in cart.</p>
+                </div>
+                <button class="btn btn-success mt-3" id="printCart">
+                    Print Cart Receipt
+                </button>
+                <!-- <button class="btn btn-success mt-3" id="printProductReceipts">Print Product Receipts</button> -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Include Bootstrap JS and Popper.js before your closing body tag -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script src="cart.js"></script>
+</body>
+
+</html>
