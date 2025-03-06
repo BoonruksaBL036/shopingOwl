@@ -33,58 +33,116 @@
                 <div id="products" class="row">
                     <!-- Product 1 -->
                     <div class="col-md-3 product">
-                        <img src="/product_img/image-1.jpg" alt="Product 1 Image" width="150px" height="150px" />
-                        <h5>Cheer Bear<br>$10</h5>
-                        <button class="btn btn-primary add-to-cart" data-product-id="Cheer Bear" data-price="10">
+                        <img src="/product_img/best_seller/boba_milktea.jpg" alt="ชานม" class="custom-img" />
+                        <h5>Boba mile tea<br>$24</h5>
+                        <!-- Modal สำหรับเลือกท็อปปิ้ง -->
+                            <div id="toppingModal" class="modal" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title">เลือกท็อปปิ้ง</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class="modal-body">
+                                    <div id="toppingOptions"></div> <!-- ที่นี่จะแสดงเช็คบ็อกซ์ของท็อปปิ้ง -->
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                                    <button type="button" class="btn btn-primary" id="confirmToppings">ยืนยัน</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        <button class="btn btn-primary add-to-cart" data-product-id="ชานม" data-price="24">
                             Add to Cart
                         </button>
                     </div>
 
                     <!-- Product 2 -->
                     <div class="col-md-3 product">
-                        <img src="/product_img/image-2.jpg" alt="Product 2 Image" width="150px" height="150px" />
-                        <h5>Grumpy Bear<br>$20</h5>
-                        <button class="btn btn-primary add-to-cart" data-product-id="Grumpy Bear" data-price="20">
+                        <img src="/product_img/best_seller/violet_lava_boba_milk_tae.jpg" alt="ชานมไข่มุกลาวามันม่วง" class="custom-img" />
+                        <h5>Violet lava boba milk tea<br>$39</h5>
+                        <button class="btn btn-primary add-to-cart" data-product-id="ชานมไข่มุกลาวามันม่วง" data-price="39">
                             Add to Cart
                         </button>
                     </div>
 
                     <!-- Product 3 -->
                     <div class="col-md-3 product">
-                        <img src="/product_img/image-3.jpg" alt="Product 3 Image" width="150px" height="150px" />
-                        <h5>Funshine Bear<br>$30</h5>
-                        <button class="btn btn-primary add-to-cart" data-product-id="Funshine Bear" data-price="30">
+                        <img src="/product_img/best_seller/green_tea_cheese.jpg" alt="ชาเขียวมะลิชีส" class="custom-img" />
+                        <h5>Green tea cheese<br>$39</h>
+                        <button class="btn btn-primary add-to-cart" data-product-id="ชาเขียวมะลิชีส" data-price="39">
                             Add to Cart
                         </button>
                     </div>
 
                     <!-- Product 4 -->
                     <div class="col-md-3 product">
-                        <img src="/product_img/image-4.jpg" alt="Product 4 Image" width="150px" height="150px" />
-                        <h5>Share Bear<br>$40</h5>
-                        <button class="btn btn-primary add-to-cart" data-product-id="Share Bear" data-price="40">
+                        <img src="/product_img/best_seller/thai_tea.jpg" alt="ชาไทย" class="custom-img" />
+                        <h5>Thai tea<br>$24</h5>
+                        <!-- Modal สำหรับเลือกท็อปปิ้ง -->
+                        <div id="toppingModal" class="modal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title">เลือกท็อปปิ้ง</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                <div id="toppingOptions"></div> <!-- ที่นี่จะแสดงเช็คบ็อกซ์ของท็อปปิ้ง -->
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                                <button type="button" class="btn btn-primary" id="confirmToppings">ยืนยัน</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary add-to-cart" data-product-id="ชาไทย" data-price="24">
                             Add to Cart
                         </button>
                     </div>
 
                     <!-- Product 5 -->
                     <div class="col-md-3 product">
-                        <img src="/product_img/image-5.jpg" alt="Product 5 Image" width="150px" height="150px" />
-                        <h5>Harmony Bear<br>$50</h5>
-                        <button class="btn btn-primary add-to-cart" data-product-id="Harmony Bear" data-price="10">
+                        <img src="/product_img/best_seller/boba_green_tea.jpg" alt="ชาเขียวไข่มุก" class="custom-img" />
+                        <h5>Boba green tea<br>$24</h5>
+                        <button class="btn btn-primary add-to-cart" data-product-id="ชาเขียวไข่มุก" data-price="24">
                             Add to Cart
                         </button>
                     </div>
 
                     <!-- Product 6 -->
                     <div class="col-md-3 product">
-                        <img src="/product_img/image-6.jpg" alt="Product 6 Image" width="150px" height="150px" />
-                        <h5>Tenderheart bear<br>$60</h5>
-                        <button class="btn btn-primary add-to-cart" data-product-id="Tenderheart bear" data-price="10">
+                        <img src="/product_img/best_seller/brown_sugar.jpg" alt="ชานมไข่มุกบราวชูการ์" class="custom-img" />
+                        <h5>Brown sugar milk tea<br>$39</h5>
+                        <button class="btn btn-primary add-to-cart" data-product-id="ชานมไข่มุกบราวชูการ์" data-price="39">
+                            Add to Cart
+                        </button>
+                    </div>
+
+                    <!-- Product 7 -->
+                    <div class="col-md-3 product">
+                        <img src="/product_img/best_seller/cheese_milk_tea.jpg" alt="ชานมขีส" class="custom-img" />
+                        <h5>Cheese milk Tea<br>$39</h5>
+                        <button class="btn btn-primary add-to-cart" data-product-id="ชานมชีส" data-price="39">
                             Add to Cart
                         </button>
                     </div>
                     
+                    <!-- Product 8 -->
+                    <div class="col-md-3 product">
+                        <img src="/product_img/best_seller/violet_lava_milk_tea.jpg" alt="ชาไทยลาวามันม่วง" class="custom-img" />
+                        <h5>Violet lava milk tea<br>$39</h5>
+                        <button class="btn btn-primary add-to-cart" data-product-id="ชาไทยลาวามันม่วง" data-price="39">
+                            Add to Cart
+                        </button>
+                    </div>
+
                 </div>
             </div>
 

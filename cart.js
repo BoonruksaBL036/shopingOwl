@@ -1,8 +1,19 @@
 /**
  * ประกาศตัวแปร cart เป็น Object ว่างใช้เก็บข้อมูลสินค้าในรถเข็นเริ่มต้น
  */
-const cart = {};
+const cart = {}; // รถเข็นสินค้า
+let currentProductId = null;
+let currentProductPrice = 0;
 
+const toppingPrices = {
+  "บุกขาว": 10,
+  "ซอสบราวน์ชูการ์": 15,
+  "ลาวาเนื้อมันม่วง": 15,
+  "ชีส": 20,
+  "ไข่มุก": 5,
+  "คริสตัสใส": 10,
+  "เจลลี่ผลไม้": 5
+};
 /**
  * ใช้ querySelectorAll เลือกทุก element ที่อยู่ class ของ add-to-cart และใช้ forEach loop เพื่อเพิ่ม even ที่จะทำงานเมื่อมีการคลิกปุ่ม Add to Cart ในหน้า website
  */
@@ -10,14 +21,46 @@ document.querySelectorAll(".add-to-cart").forEach((button) => {
   button.addEventListener("click", () => {
     const productId = button.getAttribute("data-product-id");
     const price = parseFloat(button.getAttribute("data-price"));
+
+    // เพิ่มสินค้าไปยังรถเข็น
     if (!cart[productId]) {
-      cart[productId] = { quantity: 1, price: price };
+      cart[productId] = { quantity: 1, price: price, toppings: [], toppingPrice: 0 };
     } else {
       cart[productId].quantity++;
     }
-    updateCartDisplay();
+
+    // แสดงป๊อปอัพให้เลือกท็อปปิ้ง
+    const toppingOptionsHTML = Object.keys(toppingPrices).map(topping => {
+      return `<label><input type="checkbox" class="topping-option" value="${topping}"> ${topping}</label><br>`;
+    }).join('');
+    document.getElementById("toppingOptions").innerHTML = toppingOptionsHTML;
+
+    // เปิด Modal ให้เลือกท็อปปิ้ง
+    $('#toppingModal').modal('show');
+
+    // เมื่อกดยืนยันการเลือกท็อปปิ้ง
+    document.getElementById("confirmToppings").addEventListener("click", () => {
+      const selectedToppings = [];
+      document.querySelectorAll(".topping-option:checked").forEach(checkbox => {
+        selectedToppings.push(checkbox.value);
+      });
+
+      // คำนวณราคาท็อปปิ้ง
+      const toppingPrice = selectedToppings.reduce((total, topping) => {
+        return total + toppingPrices[topping];
+      }, 0);
+
+      // อัปเดตข้อมูลท็อปปิ้งในรถเข็น
+      cart[productId].toppings = selectedToppings;
+      cart[productId].toppingPrice = toppingPrice;
+
+      updateCartDisplay();  // อัปเดตแสดงผลในรถเข็น
+      $('#toppingModal').modal('hide');  // ปิด Modal
+    });
   });
 });
+
+
 
 /**ฟังก์ชันนี้มีหน้าที่ในการอัปเดตและแสดงผลของรถเข็นในหน้าเว็บให้เป็นตรงกับข้อมูลในตัวแปล Cart={} โดยผู้ใช้จะสามารถเห็นสถานะปัจจุบันของรถเข็นได้ และเพิ่มปุ่มเพื่อลบสินค้าออกได้ จะมีปุ่มลบสินค้าแต่ละชิ้นที่อยู่ในตารางของรถเข็น */
 function updateCartDisplay() {
@@ -33,7 +76,7 @@ function updateCartDisplay() {
   // Create table header
   const thead = document.createElement("thead");
   const headerRow = document.createElement("tr");
-  const headers = ["Product", "Quantity", "Price", "Total", "Actions"];
+  const headers = ["Product", "Topping", "Topping Price", "Quantity","Price", "Total", "Actions"];
   headers.forEach((headerText) => {
     const th = document.createElement("th");
     th.textContent = headerText;
@@ -48,13 +91,23 @@ function updateCartDisplay() {
   for (const productId in cart) {
     const item = cart[productId];
     const itemTotalPrice = item.quantity * item.price;
-    totalPrice += itemTotalPrice;
+    const toppingTotalPrice = item.toppingPrice * item.quantity; // คำนวณราคาท็อปปิ้ง
+    totalPrice += itemTotalPrice + toppingTotalPrice; // รวมราคา
 
     const tr = document.createElement("tr");
 
     const productNameCell = document.createElement("td");
     productNameCell.textContent = `${productId}`;
     tr.appendChild(productNameCell);
+
+    // แสดงท็อปปิ้งที่เลือก
+    const toppingCell = document.createElement("td");
+    toppingCell.textContent = item.toppings.length > 0 ? item.toppings.join(", ") : "ไม่มี";
+    tr.appendChild(toppingCell);
+
+    const toppingPriceCell = document.createElement("td");
+    toppingPriceCell.textContent = `$${toppingTotalPrice}`; // แสดงราคาท็อปปิ้ง
+    tr.appendChild(toppingPriceCell);
 
     const quantityCell = document.createElement("td");
     quantityCell.textContent = item.quantity;
@@ -65,7 +118,7 @@ function updateCartDisplay() {
     tr.appendChild(priceCell);
 
     const totalCell = document.createElement("td");
-    totalCell.textContent = `$${itemTotalPrice}`;
+    totalCell.textContent = `$${itemTotalPrice + toppingTotalPrice}`; // รวมราคา
     tr.appendChild(totalCell);
 
     const actionsCell = document.createElement("td");
@@ -91,11 +144,10 @@ function updateCartDisplay() {
     cartElement.innerHTML = "<p>No items in cart.</p>";
   } else {
     const totalPriceElement = document.createElement("p");
-    totalPriceElement.textContent = `Total Price: $${totalPrice}`;
+    totalPriceElement.textContent = `Total Price: $${totalPrice}`; // แสดงราคาทั้งหมด
     cartElement.appendChild(totalPriceElement);
   }
 }
-
 /** จะเพิ่ม event ให้กับ element ที่มี id printCart เมื่อมีการคลิก Print Cart Recipt บิลใบเสร็จของสินค้า. */
 document.getElementById("printCart").addEventListener("click", () => {
   printReceipt("Thank you!", generateCartReceipt());
@@ -184,6 +236,8 @@ function generateCartReceipt() {
         <thead>
           <tr>
             <th>Product</th>
+            <th>Topping</th>
+            <th>ToppingPrice</th>
             <th>Quantity</th>
             <th>Price</th>
             <th>Total</th>
@@ -196,16 +250,19 @@ function generateCartReceipt() {
   for (const productId in cart) {
     const item = cart[productId];
     const itemTotalPrice = item.quantity * item.price;
+    const toppingTotalPrice = item.toppingPrice * item.quantity; // คำนวณราคาท็อปปิ้ง
 
     receiptContent += `
-        <tr>
-          <td>${productId}</td>
-          <td>${item.quantity}</td>
-          <td>$${item.price}</td>
-          <td>$${itemTotalPrice}</td>
-        </tr>`;
+    <tr>
+      <td>${productId}</td>
+      <td>${item.toppings.length > 0 ? item.toppings.join(", ") : "ไม่มี"}</td>
+      <td>$${toppingTotalPrice}</td>
+      <td>${item.quantity}</td>
+      <td>$${item.price}</td>
+      <td>$${itemTotalPrice + toppingTotalPrice}</td> <!-- รวมราคา -->
+    </tr>`;
 
-    totalPrice += itemTotalPrice;
+    totalPrice += itemTotalPrice + toppingTotalPrice; // รวมราคา
   }
 
   receiptContent += `
@@ -217,5 +274,6 @@ function generateCartReceipt() {
 
   return receiptContent;
 }
+
 
 // ++++++++++++++++++++++++++++

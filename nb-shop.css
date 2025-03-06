@@ -40,6 +40,11 @@ img{
     transition: transform 0.3s ease; /* Add transition for smooth effect */
 }
 
+.custom-img{
+    width: 190px;
+    height: 145px;
+}
+
 /* Change box-shadow and image transform on hover */
 .product:hover {
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 8px 16px 0 rgba(0, 0, 0, 0.2); /* Slightly stronger box-shadow on hover */

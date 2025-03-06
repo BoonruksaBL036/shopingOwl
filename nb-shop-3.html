@@ -20,6 +20,7 @@
             <ul>
                 <li><a href="main_index.html">Black</a></li>
             </ul>
+            
         </nav>
     </header>
 
@@ -27,64 +28,213 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="logo d-flex justify-content-center" style="margin-bottom: 30px">
-                    <h1>Favourite</h1><br /><br />
+                    <h1>Classic</h1><br /><br />
                 </div>
 
                 <div id="products" class="row">
                     <!-- Product 1 -->
                     <div class="col-md-3 product">
-                        <img src="/product_img/image-2.1.jpg" alt="Product 1 Image" width="150px" height="150px" />
-                        <h5>Gentle Heart<br>$10</h5>
-                        <button class="btn btn-primary add-to-cart" data-product-id="Gentle Heart" data-price="10">
+                        <img src="/product_img/favorite/caramal_milk_tea.jpg" alt="ชานมคาราเมล" class="custom-img" />
+                        <h5>Caramal milk tea<br>$24</h5>
+                        <!-- Modal สำหรับเลือกท็อปปิ้ง -->
+                            <div id="toppingModal" class="modal" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title">เลือกท็อปปิ้ง</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class="modal-body">
+                                    <div id="toppingOptions"></div> <!-- ที่นี่จะแสดงเช็คบ็อกซ์ของท็อปปิ้ง -->
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                                    <button type="button" class="btn btn-primary" id="confirmToppings">ยืนยัน</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        <button class="btn btn-primary add-to-cart" data-product-id="ชานมคาราเมล" data-price="24">
                             Add to Cart
                         </button>
                     </div>
 
                     <!-- Product 2 -->
                     <div class="col-md-3 product">
-                        <img src="/product_img/image-2.2.jpg" alt="Product 2 Image" width="150px" height="150px" />
-                        <h5>Cozy Heart<br>$20</h5>
-                        <button class="btn btn-primary add-to-cart" data-product-id="Cozy Heart" data-price="20">
+                        <img src="/product_img/favorite/mint_milk_tea.jpg" alt="ชานมมมิ้นท์" class="custom-img" />
+                        <h5>Mint mlik tea<br>$24</h5>
+                        <!-- Modal สำหรับเลือกท็อปปิ้ง -->
+                        <div id="toppingModal" class="modal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title">เลือกท็อปปิ้ง</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                <div id="toppingOptions"></div> <!-- ที่นี่จะแสดงเช็คบ็อกซ์ของท็อปปิ้ง -->
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                                <button type="button" class="btn btn-primary" id="confirmToppings">ยืนยัน</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary add-to-cart" data-product-id="ชานมมมิ้นท์" data-price="24">
                             Add to Cart
                         </button>
                     </div>
 
                     <!-- Product 3 -->
                     <div class="col-md-3 product">
-                        <img src="/product_img/image-2.3.jpg" alt="Product 3 Image" width="150px" height="150px" />
-                        <h5>Proud Heart<br>$30</h5>
-                        <button class="btn btn-primary add-to-cart" data-product-id="Proud Heart" data-price="30">
+                        <img src="/product_img/favorite/hazeinut_milk_tea.jpg" alt="ชานมเฮลเซนัท" class="custom-img" />
+                        <h5>Hazeinut milk tea<br>$24</h>
+                            <!-- Modal สำหรับเลือกท็อปปิ้ง -->
+                            <div id="toppingModal" class="modal" tabindex="-1" role="dialog">
+                                <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title">เลือกท็อปปิ้ง</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                    </div>
+                                    <div class="modal-body">
+                                    <div id="toppingOptions"></div> <!-- ที่นี่จะแสดงเช็คบ็อกซ์ของท็อปปิ้ง -->
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                                    <button type="button" class="btn btn-primary" id="confirmToppings">ยืนยัน</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+                        <button class="btn btn-primary add-to-cart" data-product-id="ชานมเฮลเซนัท" data-price="24">
                             Add to Cart
                         </button>
                     </div>
 
                     <!-- Product 4 -->
                     <div class="col-md-3 product">
-                        <img src="/product_img/image-2.4.jpg" alt="Product 4 Image" width="150px" height="150px" />
-                        <h5>Bright Heart<br>$40</h5>
-                        <button class="btn btn-primary add-to-cart" data-product-id="Bright Heart" data-price="40">
+                        <img src="/product_img/favorite/thai_tea.jpg" alt="ชาไทย" class="custom-img" />
+                        <h5>Thai tea<br>$24</h5>
+                        <!-- Modal สำหรับเลือกท็อปปิ้ง -->
+                        <div id="toppingModal" class="modal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title">เลือกท็อปปิ้ง</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                <div id="toppingOptions"></div> <!-- ที่นี่จะแสดงเช็คบ็อกซ์ของท็อปปิ้ง -->
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                                <button type="button" class="btn btn-primary" id="confirmToppings">ยืนยัน</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary add-to-cart" data-product-id="ชาไทย" data-price="24">
                             Add to Cart
                         </button>
                     </div>
 
                     <!-- Product 5 -->
                     <div class="col-md-3 product">
-                        <img src="/product_img/image-2.5.jpg" alt="Product 5 Image" width="150px" height="150px" />
-                        <h5>Lotsa Heart<br>$50</h5>
-                        <button class="btn btn-primary add-to-cart" data-product-id="Lotsa Heart" data-price="10">
+                        <img src="/product_img/favorite/cacao_milk_tea.jpg" alt="ชานมโกโก้" class="custom-img" />
+                        <h5>Cocoa milk tea<br>$24</h5>
+                        <!-- Modal สำหรับเลือกท็อปปิ้ง -->
+                        <div id="toppingModal" class="modal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title">เลือกท็อปปิ้ง</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                <div id="toppingOptions"></div> <!-- ที่นี่จะแสดงเช็คบ็อกซ์ของท็อปปิ้ง -->
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                                <button type="button" class="btn btn-primary" id="confirmToppings">ยืนยัน</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary add-to-cart" data-product-id="ชานมโกโก้" data-price="24">
                             Add to Cart
                         </button>
                     </div>
 
                     <!-- Product 6 -->
                     <div class="col-md-3 product">
-                        <img src="/product_img/image-2.6.jpg" alt="Product 6 Image" width="150px" height="150px" />
-                        <h5>Brave Heart<br>$60</h5>
-                        <button class="btn btn-primary add-to-cart" data-product-id="Brave Heart" data-price="10">
+                        <img src="/product_img/favorite/milo_milk_tea.jpg" alt="ชานมไมโล" class="custom-img" />
+                        <h5>Milo milk tea<br>$24</h5>
+                        <!-- Modal สำหรับเลือกท็อปปิ้ง -->
+                        <div id="toppingModal" class="modal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title">เลือกท็อปปิ้ง</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                <div id="toppingOptions"></div> <!-- ที่นี่จะแสดงเช็คบ็อกซ์ของท็อปปิ้ง -->
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                                <button type="button" class="btn btn-primary" id="confirmToppings">ยืนยัน</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary add-to-cart" data-product-id="ชานมไมโล" data-price="24">
                             Add to Cart
                         </button>
                     </div>
-                    
+
+                    <!-- Product 7 -->
+                    <div class="col-md-3 product">
+                        <img src="/product_img/favorite/matcha_latte.jpg" alt="ชาเขียวมัจฉะ" class="custom-img" />
+                        <h5>Matcha latte<br>$24</h5>
+                        <!-- Modal สำหรับเลือกท็อปปิ้ง -->
+                        <div id="toppingModal" class="modal" tabindex="-1" role="dialog">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                <h5 class="modal-title">เลือกท็อปปิ้ง</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                <div id="toppingOptions"></div> <!-- ที่นี่จะแสดงเช็คบ็อกซ์ของท็อปปิ้ง -->
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                                <button type="button" class="btn btn-primary" id="confirmToppings">ยืนยัน</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                        <button class="btn btn-primary add-to-cart" data-product-id="ชาเขียวมัจฉะ" data-price="24">
+                            Add to Cart
+                        </button>
+                    </div>
+
                 </div>
             </div>
 
