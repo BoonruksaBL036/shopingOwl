@@ -6,61 +6,73 @@ let currentProductId = null;
 let currentProductPrice = 0;
 
 const toppingPrices = {
-  "บุกขาว": 10,
-  "ซอสบราวน์ชูการ์": 15,
-  "ลาวาเนื้อมันม่วง": 15,
-  "ชีส": 20,
-  "ไข่มุก": 5,
-  "คริสตัสใส": 10,
-  "เจลลี่ผลไม้": 5
+  บุกขาว: 10,
+  ซอสบราวน์ชูการ์: 15,
+  ลาวาเนื้อมันม่วง: 15,
+  ชีส: 20,
+  ไข่มุก: 5,
+  คริสตัสใส: 10,
+  เจลลี่ผลไม้: 5,
 };
 /**
  * ใช้ querySelectorAll เลือกทุก element ที่อยู่ class ของ add-to-cart และใช้ forEach loop เพื่อเพิ่ม even ที่จะทำงานเมื่อมีการคลิกปุ่ม Add to Cart ในหน้า website
  */
 document.querySelectorAll(".add-to-cart").forEach((button) => {
   button.addEventListener("click", () => {
-    const productId = button.getAttribute("data-product-id");
-    const price = parseFloat(button.getAttribute("data-price"));
+    currentProductId = button.getAttribute("data-product-id");
+    currentProductPrice = parseFloat(button.getAttribute("data-price"));
 
-    // เพิ่มสินค้าไปยังรถเข็น
-    if (!cart[productId]) {
-      cart[productId] = { quantity: 1, price: price, toppings: [], toppingPrice: 0 };
-    } else {
-      cart[productId].quantity++;
-    }
-
-    // แสดงป๊อปอัพให้เลือกท็อปปิ้ง
-    const toppingOptionsHTML = Object.keys(toppingPrices).map(topping => {
-      return `<label><input type="checkbox" class="topping-option" value="${topping}"> ${topping}</label><br>`;
-    }).join('');
+    // สร้างตัวเลือกท็อปปิ้งใหม่
+    const toppingOptionsHTML = Object.keys(toppingPrices)
+      .map((topping) => {
+        return `<label><input type="checkbox" class="topping-option" value="${topping}"> ${topping}</label><br>`;
+      })
+      .join("");
     document.getElementById("toppingOptions").innerHTML = toppingOptionsHTML;
 
-    // เปิด Modal ให้เลือกท็อปปิ้ง
-    $('#toppingModal').modal('show');
-
-    // เมื่อกดยืนยันการเลือกท็อปปิ้ง
-    document.getElementById("confirmToppings").addEventListener("click", () => {
-      const selectedToppings = [];
-      document.querySelectorAll(".topping-option:checked").forEach(checkbox => {
-        selectedToppings.push(checkbox.value);
-      });
-
-      // คำนวณราคาท็อปปิ้ง
-      const toppingPrice = selectedToppings.reduce((total, topping) => {
-        return total + toppingPrices[topping];
-      }, 0);
-
-      // อัปเดตข้อมูลท็อปปิ้งในรถเข็น
-      cart[productId].toppings = selectedToppings;
-      cart[productId].toppingPrice = toppingPrice;
-
-      updateCartDisplay();  // อัปเดตแสดงผลในรถเข็น
-      $('#toppingModal').modal('hide');  // ปิด Modal
-    });
+    // เปิด Modal
+    $("#toppingModal").modal("show");
   });
 });
 
+// ใช้ `onclick` แทน `addEventListener` เพื่อไม่ให้เพิ่ม Event ซ้ำ
+// ✅ ใช้ productId + toppings เพื่อรวมเมนูที่เหมือนกัน
+document.getElementById("confirmToppings").onclick = () => {
+  if (!currentProductId) {
+    alert("กรุณาเลือกสินค้าให้ถูกต้อง");
+    return;
+  }
 
+  const selectedToppings = [];
+  document.querySelectorAll(".topping-option:checked").forEach((checkbox) => {
+    selectedToppings.push(checkbox.value);
+  });
+
+  // คำนวณราคาท็อปปิ้ง
+  const toppingPrice = selectedToppings.reduce((total, topping) => {
+    return total + toppingPrices[topping];
+  }, 0);
+
+  // ใช้คีย์เป็น "productId + toppings" เพื่อให้แยกออเดอร์ที่ท็อปปิ้งต่างกัน
+  const productKey = `${currentProductId}-${selectedToppings.sort().join(",")}`;
+
+  if (cart[productKey]) {
+    // ถ้าเมนู + ท็อปปิ้งแบบนี้มีอยู่แล้ว ให้เพิ่มจำนวน
+    cart[productKey].quantity++;
+  } else {
+    // ถ้าไม่มี ให้สร้างใหม่
+    cart[productKey] = {
+      productId: currentProductId,
+      quantity: 1,
+      price: currentProductPrice,
+      toppings: selectedToppings,
+      toppingPrice: toppingPrice,
+    };
+  }
+
+  updateCartDisplay(); // อัปเดตแสดงผลในรถเข็น
+  $("#toppingModal").modal("hide"); // ปิด Modal
+};
 
 /**ฟังก์ชันนี้มีหน้าที่ในการอัปเดตและแสดงผลของรถเข็นในหน้าเว็บให้เป็นตรงกับข้อมูลในตัวแปล Cart={} โดยผู้ใช้จะสามารถเห็นสถานะปัจจุบันของรถเข็นได้ และเพิ่มปุ่มเพื่อลบสินค้าออกได้ จะมีปุ่มลบสินค้าแต่ละชิ้นที่อยู่ในตารางของรถเข็น */
 function updateCartDisplay() {
@@ -76,7 +88,7 @@ function updateCartDisplay() {
   // Create table header
   const thead = document.createElement("thead");
   const headerRow = document.createElement("tr");
-  const headers = ["Product", "Topping", "Topping Price", "Quantity","Price", "Total", "Actions"];
+  const headers = ["Product", "Toppings", "Topping Price", "Quantity", "Price", "Total", "Actions"];
   headers.forEach((headerText) => {
     const th = document.createElement("th");
     th.textContent = headerText;
@@ -88,8 +100,9 @@ function updateCartDisplay() {
   // Create table body
   const tbody = document.createElement("tbody");
 
-  for (const productId in cart) {
-    const item = cart[productId];
+  for (const productKey in cart) {
+    const itemName = cart[productKey];
+    const item = cart[productKey];
     const itemTotalPrice = item.quantity * item.price;
     const toppingTotalPrice = item.toppingPrice * item.quantity; // คำนวณราคาท็อปปิ้ง
     totalPrice += itemTotalPrice + toppingTotalPrice; // รวมราคา
@@ -97,7 +110,7 @@ function updateCartDisplay() {
     const tr = document.createElement("tr");
 
     const productNameCell = document.createElement("td");
-    productNameCell.textContent = `${productId}`;
+    productNameCell.textContent = item.productId;
     tr.appendChild(productNameCell);
 
     // แสดงท็อปปิ้งที่เลือก
@@ -125,9 +138,9 @@ function updateCartDisplay() {
     const deleteButton = document.createElement("button");
     deleteButton.innerHTML = '<i class="fa-solid fa-trash-can"></i>';
     deleteButton.classList.add("btn", "btn-danger", "delete-product");
-    deleteButton.setAttribute("data-product-id", productId);
+    deleteButton.setAttribute("data-product-id", productKey);
     deleteButton.addEventListener("click", () => {
-      delete cart[productId];
+      delete cart[productKey];
       updateCartDisplay();
     });
     actionsCell.appendChild(deleteButton);
@@ -230,13 +243,12 @@ function generateCartReceipt() {
           background-color: #f2f2f2;
         }
       </style>
-      <p>SANGKONG SHOP!</p>
+      <p>Owl Cha</p>
       <h2>Cart Receipt</h2>
       <table>
         <thead>
           <tr>
             <th>Product</th>
-            <th>Topping</th>
             <th>ToppingPrice</th>
             <th>Quantity</th>
             <th>Price</th>
@@ -255,7 +267,6 @@ function generateCartReceipt() {
     receiptContent += `
     <tr>
       <td>${productId}</td>
-      <td>${item.toppings.length > 0 ? item.toppings.join(", ") : "ไม่มี"}</td>
       <td>$${toppingTotalPrice}</td>
       <td>${item.quantity}</td>
       <td>$${item.price}</td>
@@ -274,6 +285,5 @@ function generateCartReceipt() {
 
   return receiptContent;
 }
-
 
 // ++++++++++++++++++++++++++++
